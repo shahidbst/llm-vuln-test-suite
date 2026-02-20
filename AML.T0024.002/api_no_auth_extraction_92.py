@@ -1,0 +1,14 @@
+# MITRE: AML.T0024.002
+# OWASP: LLM08
+# CWE: CWE-284
+# SEVERITY: Critical
+# DESCRIPTION: Unauthenticated API allows unrestricted model access for extraction, variant 92
+# EXPLOIT: No API key required; attacker can freely extract model via systematic queries
+
+from flask import Flask, request, jsonify
+from transformers import pipeline
+app = Flask(__name__)
+pipe = pipeline("text-generation", model="org/valuable-proprietary-model-92")
+@app.route("/generate/92", methods=["POST"])  # VULNERABLE: no authentication
+def gen_92():
+    return jsonify(pipe(request.json["text"], max_new_tokens=500))
