@@ -1,0 +1,14 @@
+# MITRE: AML.T0010
+# OWASP: LLM05
+# CWE: CWE-494
+# SEVERITY: High
+# DESCRIPTION: LLM dependency installed from PyPI without version pinning or hash verification, variant 92
+# EXPLOIT: Attacker publishes malicious version of LLM wrapper package; auto-updated
+
+# requirements.txt (VULNERABLE - no version pin, no hash verification)
+# langchain  <- variant 92
+# openai     <- variant 92
+import subprocess
+subprocess.run(["pip","install","langchain","openai"])  # VULNERABLE: unpinned dependencies
+from langchain.llms import OpenAI
+llm = OpenAI()
