@@ -1938,3 +1938,8 @@ if __name__ == "__main__":
     print("Writing AML.T0024.000 samples...")
     write_samples("AML.T0024.000", MEMBERSHIP_INFERENCE_SAMPLES)
     print("Done!")
+
+
+
+
+print("EOF")
